@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>&lt;%@ page contentType=&quot;text/html&quot; pageEncoding=&quot;GBK&quot;%&gt;
+			</div>
+			<div>&lt;html&gt;
+			</div>
+			<div>&lt;head&gt;&lt;title&gt;www.mldnjava.cn，MLDN高端Java培训&lt;/title&gt;&lt;/head&gt;
+			</div>
+			<div>&lt;body&gt;
+			</div>
+			<div>&lt;%&nbsp; &nbsp; &nbsp; &nbsp; request.setCharacterEncoding(&quot;GBK&quot;) ;&nbsp; &nbsp; &nbsp; &nbsp; %&gt;
+			</div>
+			<div><span style="font-weight: bold;">&lt;jsp:useBean id=&quot;simple&quot; scope=&quot;page&quot; class=&quot;cn.mldn.lxh.demo.SimpleBean&quot;/&gt;</span>
+			</div>
+			<div><span style="font-weight: bold;">&lt;jsp:setProperty name=&quot;simple&quot; property=&quot;*&quot;/&gt;//property=&quot;*&quot;利用set方法来以自动化获得表单的输入信息</span>
+			</div>
+			<div><span style="font-weight: bold;">&lt;h3&gt;姓名：&lt;%=simple.getName()%&gt;&lt;/h3&gt;</span>
+			</div>
+			<div><span style="font-weight: bold;">&lt;h3&gt;年龄：&lt;%=simple.getAge()%&gt;&lt;/h3&gt;</span>
+			</div>
+			<div>&lt;/body&gt;
+			</div>
+			<div>&lt;/html&gt;
+			</div>
+		</div>
+		<div>直接通过jsp标签取得属性
+		</div>
+		<div>
+			<div>&lt;h3&gt;姓名：<span style="font-weight: bold;">&lt;jsp:getProperty name=&quot;simple&quot; property=&quot;name&quot;/&gt;</span>&lt;/h3&gt;
+			</div>
+			<div>&lt;h3&gt;年龄：<span style="font-weight: bold;">&lt;jsp:getProperty name=&quot;simple&quot; property=&quot;age&quot;/&gt;</span>&lt;/h3&gt;
+			</div>
+		</div>
+		<div><br />
+		</div>
+		<div>表单中的name属性必须和clas中的private属性一致，方可获取。若不是String类型的数据可以进行自动转换，set方法的命名需严格要求:
+		</div>
+		<div>pubilc void set+属性名(类型 属性名){
+		</div>
+		<div>this.属性名=属性名；
+		</div>
+		<div>}
+		</div>
+		<div>
+			<div>&lt;form action=&quot;input_bean.jsp&quot; method=&quot;post&quot;&gt;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; 姓名：&lt;input type=&quot;text&quot; <span style="font-weight: bold; ">name=&quot;name&quot;</span>&gt;&lt;br&gt;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; 年龄：&lt;input type=&quot;text&quot;<span style="font-weight: bold;"> name=&quot;age</span>&quot;&gt;&lt;br&gt;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;submit&quot; value=&quot;提交&quot;&gt;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &lt;input type=&quot;reset&quot; value=&quot;重置&quot;&gt;
+			</div>
+			<div>&lt;/form&gt;
+			</div>
+		</div>
+		<div><br />
+		</div>
+		<div><br />
+		</div>
+		<div>
+			<div>private String<span style="font-weight: bold;"> name</span> ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; private int <span style="font-weight: bold;">age</span> ;
+			</div>
+		</div>
+		<div><br />
+		</div>
+		<div>
+			<div>public void setName(String name){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// System.out.println(&quot;----------------------&quot;) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.name = name ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public void setAge(int age){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;// System.out.println(&quot;**********************8&quot;) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.age = age ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+		</div>
+	</body>
+</html>

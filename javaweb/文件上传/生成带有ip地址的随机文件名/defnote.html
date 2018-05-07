@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>
+				<pre style="word-wrap: normal; font-size: 10pt; ">
+<code><span style="color: #0000ff;">package</span> cn.mldn.lxh.util ;
+<span style="color: #0000ff;">import</span> java.text.SimpleDateFormat ;
+<span style="color: #0000ff;">import</span> java.util.Date ;
+<span style="color: #0000ff;">import</span> java.util.Random ;
+<span style="color: #0000ff;">public</span> <span style="color: #0000ff;">class</span> IPTimeStamp {
+        <span style="color: #0000ff;">private</span> SimpleDateFormat sdf = <span style="color: #0000ff;">null</span> ;
+        <span style="color: #0000ff;">private</span> String ip = <span style="color: #0000ff;">null</span> ;
+        <span style="color: #0000ff;">public</span> IPTimeStamp(){
+        }
+        <span style="color: #0000ff;">public</span> IPTimeStamp(String ip){
+                <span style="color: #0000ff;">this</span>.ip = ip ;
+        }
+        <span style="color: #0000ff;">public</span> String getIPTimeRand(){
+                StringBuffer buf = <span style="color: #0000ff;">new</span> StringBuffer() ;
+                <span style="color: #0000ff;">if</span>(<span style="color: #0000ff;">this</span>.ip != <span style="color: #0000ff;">null</span>){
+                        String s[] = <span style="color: #0000ff;">this</span>.ip.split(<span style="color: #800080">"\\."</span>) ;
+                        <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i=<span style="color: #ff0000;">0</span>;i&lt;s.length;i++){
+                                buf.append(<span style="color: #0000ff;">this</span>.addZero(s[i],<span style="color: #ff0000;">3</span>)) ;
+                        }
+                }
+                buf.append(<span style="color: #0000ff;">this</span>.getTimeStamp()) ;
+                Random r = <span style="color: #0000ff;">new</span> Random() ;
+                <span style="color: #0000ff;">for</span>(<span style="color: #0000ff;">int</span> i=<span style="color: #ff0000;">0</span>;i&lt;<span style="color: #ff0000;">3</span>;i++){
+                        buf.append(r.nextInt(<span style="color: #ff0000;">10</span>)) ;
+                }
+                <span style="color: #0000ff;">return</span> buf.toString() ;
+        }
+        <span style="color: #0000ff;">public</span> String getDate(){
+                <span style="color: #0000ff;">this</span>.sdf = <span style="color: #0000ff;">new</span> SimpleDateFormat(<span style="color: #800080">"yyyy-MM-dd HH:mm:ss.SSS"</span>) ;
+                <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">this</span>.sdf.format(<span style="color: #0000ff;">new</span> Date()) ;
+        }
+        <span style="color: #0000ff;">public</span> String getTimeStamp(){
+                <span style="color: #0000ff;">this</span>.sdf = <span style="color: #0000ff;">new</span> SimpleDateFormat(<span style="color: #800080">"yyyyMMddHHmmssSSS"</span>) ;
+                <span style="color: #0000ff;">return</span> <span style="color: #0000ff;">this</span>.sdf.format(<span style="color: #0000ff;">new</span> Date()) ;
+        }
+        <span style="color: #0000ff;">private</span> String addZero(String str,<span style="color: #0000ff;">int</span> len){
+                StringBuffer s = <span style="color: #0000ff;">new</span> StringBuffer() ;
+                s.append(str) ;
+                <span style="color: #0000ff;">while</span>(s.length() &lt; len){
+                        s.insert(<span style="color: #ff0000;">0</span>,<span style="color: #800080">"0"</span>) ;
+                }
+                <span style="color: #0000ff;">return</span> s.toString() ;
+        }
+        <span style="color: #0000ff;">public</span> <span style="color: #0000ff;">static</span> <span style="color: #0000ff;">void</span> main(String args[]){
+                System.out.println(<span style="color: #0000ff;">new</span> IPTimeStamp(<span style="color: #800080">"192.168.1.1"</span>)<span style="color: #ff0000;">.</span>getIPTimeRand()) ;
+        }
+}</code></pre>
+			</div>
+		</div>
+	</body>
+</html>

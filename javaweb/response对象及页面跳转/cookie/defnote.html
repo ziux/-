@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>&lt;%
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; Cookie c1 = new Cookie(&quot;lxh&quot;,&quot;LiXingHua&quot;) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; Cookie c2 = new Cookie(&quot;mldn&quot;,&quot;www.MLDNJAVA.cn&quot;) ;//创建cookie对象
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; c1.setMaxAge(100) ;//设置cookie的保存时间
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; c2.setMaxAge(100) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; response.addCookie(c1) ;//添加cookie
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; response.addCookie(c2) ;
+			</div>
+			<div>%&gt;
+			</div>
+		</div>
+		<div><br />
+		</div>
+		<div>获取cookie属性
+		</div>
+		<div>
+			<div>&lt;%
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; Cookie c[] = request.getCookies() ;&nbsp; &nbsp; &nbsp; &nbsp; // 取得客户端的全部Cookie
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; System.out.println(c) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; for(int x=0;x&lt;c.length;x++){
+			</div>
+			<div>%&gt;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &lt;h3&gt;&lt;%=c[x].getName()%&gt; --&gt; &lt;%=c[x].getValue()%&gt;&lt;/h3&gt;
+			</div>
+			<div>&lt;%
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>%&gt;
+			</div>
+		</div>
+	</body>
+</html>

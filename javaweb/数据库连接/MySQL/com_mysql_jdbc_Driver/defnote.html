@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>String userName=&quot;root&quot;;
+			</div>
+			<div>&nbsp; //密码
+			</div>
+			<div>&nbsp; String userPasswd=&quot;0000&quot;;
+			</div>
+			<div>&nbsp; //数据库名
+			</div>
+			<div>&nbsp; String dbName=&quot;student1&quot;;
+			</div>
+			<div>&nbsp; //表名
+			</div>
+			<div>&nbsp; String tableName=&quot;stu1&quot;;
+			</div>
+			<div>&nbsp; //联结字符串
+			</div>
+			<div>&nbsp; String url=&quot;jdbc:mysql://localhost:3306/&quot;+dbName+&quot;?user=&quot;+userName+&quot;&amp;password=&quot;+userPasswd;
+			</div>
+			<div>&nbsp; Class.forName(&quot;com.mysql.jdbc.Driver&quot;).newInstance();
+			</div>
+			<div>&nbsp; Connection connection=DriverManager.getConnection(url);
+			</div>
+			<div>&nbsp; Statement statement = connection.createStatement();
+			</div>
+			<div>&nbsp; String sql=&quot;SELECT * FROM &quot;+tableName;
+			</div>
+			<div>&nbsp; ResultSet rs = statement.executeQuery(sql); 
+			</div>
+			<div>&nbsp; //获得数据结果集合
+			</div>
+			<div>&nbsp;&nbsp; ResultSetMetaData rmeta = rs.getMetaData();
+			</div>
+			<div>&nbsp; //确定数据集的列数，亦字段数
+			</div>
+			<div>&nbsp;&nbsp; int numColumns=rmeta.getColumnCount();
+			</div>
+		</div>
+		<div>// 输出每一个数据值
+		</div>
+	</body>
+</html>

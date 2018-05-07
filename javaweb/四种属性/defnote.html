@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>pageContext（page范围）：只在一个页面中保存，跳转之后无效
+		</div>
+		<div>request：只在一次请求中保存，服务器跳转之后依然有效，
+		</div>
+		<div>session：在一次会话中保存，无论何种跳转都可以使用，但是新开的浏览器无法使用
+		</div>
+		<div>application：在整个服务器中保存，所有用户都可以使用。
+		</div>
+		<div><br />
+		</div>
+		<div><br />
+		</div>
+		<div>
+			<div>&lt;%&nbsp; &nbsp; &nbsp; &nbsp; // 设置属性
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; request.setAttribute(&quot;name&quot;,&quot;李兴华&quot;) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; request.setAttribute(&quot;birthday&quot;,new Date()) ;
+			</div>
+			<div>%&gt;
+			</div>
+		</div>
+		<div><br />
+		</div>
+		<div>
+			<div>&lt;% &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;//获得属性
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; String username = (String) request.getAttribute(&quot;name&quot;) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; Date userbirthday = (Date)request.getAttribute(&quot;birthday&quot;) ;
+			</div>
+			<div>%&gt;
+			</div>
+		</div>
+		<div><br />
+		</div>
+		<div>request.setCharacterEncoding(&quot;GBK&quot;) ;// 设置的是统一编码
+		</div>
+		<div><br />
+		</div>
+		<div>一些request方法：
+		</div>
+		<div>
+			<div>&lt;%
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; String method = request.getMethod() ;//请求方式
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; String ip = request.getRemoteAddr() ;//IP地址
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; String path = request.getServletPath() ;//访问路径
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; String contextPath = request.getContextPath() ;//上下文名称
+			</div>
+			<div>%&gt;
+			</div>
+			<div>&lt;h3&gt;请求方式：&lt;%=method%&gt;&lt;/h3&gt;
+			</div>
+			<div>&lt;h3&gt;IP地址：&lt;%=ip%&gt;&lt;/h3&gt;
+			</div>
+			<div>&lt;h3&gt;访问路径：&lt;%=path%&gt;&lt;/h3&gt;
+			</div>
+			<div>&lt;h3&gt;上下文名称：&lt;%=contextPath%&gt;&lt;/h3&gt;
+			</div>
+		</div>
+		<div><br />
+		</div>
+		<div>
+			<div>&lt;%
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; Enumeration enu = request.getHeaderNames() ;&nbsp; &nbsp; &nbsp; &nbsp; // 取得全部的头信息
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; while(enu.hasMoreElements()){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; String headerName = (String) enu.nextElement() ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; String headerValue = request.getHeader(headerName) ;
+			</div>
+			<div>%&gt;
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>
+				<div><br />
+				</div>
+				<div>&lt;%@ page contentType=&quot;text/html&quot; pageEncoding=&quot;GBK&quot;%&gt;
+				</div>
+				<div>&lt;html&gt;
+				</div>
+				<div>&lt;body&gt;
+				</div>
+				<div><span style="color: rgb(255, 0, 0);">&lt;%</span>
+				</div>
+				<div><span style="color: rgb(255, 0, 0);">&nbsp; &nbsp; &nbsp; &nbsp; pageContext.forward(&quot;pagecontext_forward_demo02.jsp?info=MLDN&quot;) ;//页面跳转，专递参数。</span>
+				</div>
+				<div><span style="color: rgb(255, 0, 0);">%&gt;</span>
+				</div>
+				<div>&lt;/body&gt;
+				</div>
+				<div>&lt;/html&gt;
+				</div>
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div>&lt;%@ page contentType=&quot;text/html&quot; pageEncoding=&quot;GBK&quot;%&gt;
+			</div>
+			<div>&lt;html&gt;
+			</div>
+			<div>&lt;body&gt;
+			</div>
+			<div>&lt;%
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; // 直接从pageContext对象中取得了request
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: rgb(255, 0, 0);">String info = pageContext.getRequest().getParameter(&quot;info&quot;) ;//从获得在页面传递过程中参数值</span>
+			</div>
+			<div>%&gt;
+			</div>
+			<div>&lt;h3&gt;info = &lt;%=info%&gt;&lt;/h3&gt;
+			</div>
+			<div>&lt;h3&gt;realpath = &lt;%=pageContext.getServletContext().getRealPath(&quot;/&quot;)%&gt;&lt;/h3&gt;
+			</div>
+			<div>&lt;/body&gt;
+			</div>
+			<div>&lt;/html&gt;
+			</div>
+		</div>
+	</body>
+</html>

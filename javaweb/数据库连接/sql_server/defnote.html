@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>import java.sql.*;
+			</div>
+			<div><br />
+			</div>
+			<div>public class JDBConnection {
+			</div>
+			<div>&nbsp; &nbsp; private final String url = &quot;jdbc:microsoft:sqlserver://localhost:1433;DatabaseName=db_BlodMay&quot;;
+			</div>
+			<div>&nbsp; &nbsp; private final String userName = &quot;sa&quot;;
+			</div>
+			<div>&nbsp; &nbsp; private final String password = &quot;&quot;;
+			</div>
+			<div>&nbsp; &nbsp; private Connection con = null;
+			</div>
+			<div>//通过构造方法加载数据库驱动
+			</div>
+			<div>&nbsp; &nbsp; static {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; try {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Class.forName(&quot;com.microsoft.jdbc.sqlserver.SQLServerDriver&quot;).newInstance(); 
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; } catch (Exception ex) {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.println(&quot;数据库加载失败&quot;);
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; }
+			</div>
+			<div>//创建数据库连接
+			</div>
+			<div>&nbsp; &nbsp; public boolean creatConnection() {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; try {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; con = DriverManager.getConnection(url, userName, password);
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; con.setAutoCommit(true);
+			</div>
+			<div><br />
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; } catch (SQLException e) {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.println(e.getMessage());
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.println(&quot;creatConnectionError!&quot;);
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; return true;
+			</div>
+			<div>&nbsp; &nbsp; }
+			</div>
+			<div>//对数据库的增加、修改和删除的操作
+			</div>
+			<div>&nbsp; &nbsp; public boolean executeUpdate(String sql) {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp;&nbsp; if (con == null) {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; creatConnection();
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; try {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Statement stmt = con.createStatement();
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; int iCount = stmt.executeUpdate(sql);
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.println(&quot;操作成功，所影响的记录数为&quot; + String.valueOf(iCount));
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return true;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; } catch (SQLException e) {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.println(e.getMessage());
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return false;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }&nbsp;&nbsp; 
+			</div>
+			<div>&nbsp; &nbsp; }
+			</div>
+			<div>//对数据库的查询操作
+			</div>
+			<div>&nbsp; &nbsp; public ResultSet executeQuery(String sql) {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; ResultSet rs;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; try {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if (con == null) {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; creatConnection();
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Statement stmt = con.createStatement();
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; try {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; rs = stmt.executeQuery(sql);
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; } catch (SQLException e) {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.println(e.getMessage());
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return null;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; } catch (SQLException e) {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.println(e.getMessage());
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; System.out.println(&quot;executeQueryError!&quot;);
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return null;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; return rs;
+			</div>
+			<div>&nbsp; &nbsp; }
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div>}
+			</div>
+		</div>
+	</body>
+</html>

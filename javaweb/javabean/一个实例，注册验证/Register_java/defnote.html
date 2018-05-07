@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>package cn.mldn.lxh.demo ;
+			</div>
+			<div>import java.util.HashMap ;
+			</div>
+			<div>import java.util.Map ;
+			</div>
+			<div>public class Register {
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; private String name ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; private String age ;&nbsp; &nbsp; &nbsp; &nbsp; // 这种接收参数的时候如果是用户自己输入的情况下，就是使用String
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; private String email ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; private Map&lt;String,String&gt; errors = null ;//生成一个errors集合（键值对），可以通过put个get方法对键值对进行写入和输出
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public Register(){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.name = &quot;&quot; ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.age = &quot;&quot; ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.email = &quot;&quot; ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.errors = new HashMap&lt;String,String&gt;() ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public boolean isValidate(){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; boolean flag = true ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if(!this.name.matches(&quot;\\w{6,15}&quot;)){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; flag = false ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.name = &quot;&quot; ;&nbsp; &nbsp; &nbsp; &nbsp; // 清空原本的name内容
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.errors.put(&quot;errname&quot;,&quot;用户名是6~15位的字母或数字。&quot;) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if(!this.email.matches(&quot;\\w+@\\w+\\.\\w+\\.?\\w*&quot;)){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; flag = false ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.email = &quot;&quot; ;&nbsp; &nbsp; &nbsp; &nbsp; // 清空原本的name内容
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.errors.put(&quot;erremail&quot;,&quot;输入的email地址不合法。&quot;) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if(!this.age.matches(&quot;\\d+&quot;)){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; flag = false ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.age = &quot;&quot; ;&nbsp; &nbsp; &nbsp; &nbsp; // 清空原本的name内容
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.errors.put(&quot;errage&quot;,&quot;年龄只能是数字。&quot;) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return flag ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public String getErrorMsg(String key){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; String value = this.errors.get(key) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return value==null?&quot;&quot;:value ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public void setName(String name){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.name = name ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public void setAge(String age){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.age = age ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public void setEmail(String email){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; this.email = email ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public String getName(){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return this.name ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public String getAge(){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return this.age ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public String getEmail(){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; return this.email ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>}
+			</div>
+		</div>
+	</body>
+</html>
