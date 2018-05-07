@@ -1,0 +1,542 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>add_age [&lt;Country tag&gt; OPTIONAL]——增加当前继承人的年龄
+			</div>
+			<div>add_backer [&lt;prov id&gt;]——添加省份（ID）为议会所有
+			</div>
+			<div>add_baseunrest [&lt;Province ID&gt;] [&lt;Base Unrest&gt;]——增加省份（ID）叛乱值（数值）
+			</div>
+			<div>add_cardinal——新增1个红衣主教
+			</div>
+			<div>add_cb [&lt;casus belli tag&gt;] [&lt;target country tag&gt;] [&lt;Actor Country tag&gt; OPTIONAL]——添加对指定国家的指定宣战理由
+			</div>
+			<div>add_claim [&lt;Province ID&gt;] [&lt;Country tag&gt; OPTIONAL]——添加一个省份宣称
+			</div>
+			<div>add_colonist [&lt;Country tag&gt;]——为指定国家添加殖民队
+			</div>
+			<div>add_consort [&lt;Target Country Tag&gt; OPTIONAL] [&lt;Origin Country Tag&gt; OPTIONAL]——添加一位配偶
+			</div>
+			<div>add_core [&lt;Province ID&gt;] [&lt;Country tag&gt; OPTIONAL]——添加核心
+			</div>
+			<div>add_diplo [&lt;Country tag&gt; OPTIONAL]——增加外交路线（？？？）
+			</div>
+			<div>add_faction [&lt;factionname&gt;]——增加派系（？？？）
+			</div>
+			<div>add_heir [&lt;Target Country Tag&gt; OPTIONAL]——生成新继承人（当前继承人会立即死去）
+			</div>
+			<div>add_idea_group [&lt;Idea group key&gt;] [&lt;Country tag&gt; OPTIONAL]——增加一个理念组
+			</div>
+			<div>add_interest [&lt;Country tag&gt;]——添加指定国家到你感兴趣的国家列表中
+			</div>
+			<div>add_issue [&lt;issue tag&gt;]——添加一个一会议题
+			</div>
+			<div>add_liberty_desire [&lt;Amount&gt;] [&lt;Target Country tag&gt; OPTIONAL]——增加附庸的独立度（自由欲望）
+			</div>
+			<div>add_local_autonomy [&lt;Province ID&gt;] [&lt;Amount&gt;]——添加一个省份的自治
+			</div>
+			<div>add_loyalty [&lt;Target Estate&gt;] [&lt;Amount&gt;]——增加一个阶级的忠诚
+			</div>
+			<div>add_missionary [&lt;Country tag&gt;]——为指定国家添加传教士
+			</div>
+			<div>add_natives [&lt;ProvinceID&gt;] [&lt;Amount&gt;]——给指定省份增加土著 (100× [&lt;Amount&gt;])
+			</div>
+			<div>add_opinion [&lt;Actor Country tag&gt;] [&lt;Target Country tag&gt; OPTIONAL]——增加一个关系（好感？）给两国家之间
+			</div>
+			<div>add_pa [&lt;Country tag&gt;]——增加指定国家族长权威（因蒂）
+			</div>
+			<div>add_permanent_claim [&lt;Province ID&gt;] [&lt;Country tag&gt; OPTIONAL]——添加一个省份永久宣称
+			</div>
+			<div>add_pi [&lt;Country tag&gt;]——增加指定国家的教廷影响力（天主教）
+			</div>
+			<div>add_reformlevel [&lt;Amount&gt;]——增加帝国改革数目
+			</div>
+			<div>add_republican_tradition [&lt;AMOUNT&gt; OPTIONAL] [&lt;Country tag&gt; OPTIONAL]——增加共和传统
+			</div>
+			<div>add_trait [&lt;personality tag&gt;, &lt;heir&gt; OPTIONAL, &lt;consort&gt; OPTIONAL]——添加（君主、继承人、配偶）特质
+			</div>
+			<div>add_unrest [&lt;CID Type&gt;] [&lt;CID Index&gt;] [&lt;Unrest&gt;]——增加叛乱度
+			</div>
+			<div>adm [&lt;AMOUNT&gt; OPTIONAL] [&lt;Country tag&gt; OPTIONAL]——增加行政君主力量点数 (default value: 999)
+			</div>
+			<div>admiral [&lt;fire&gt;] [&lt;shock&gt;] [&lt;maneuver&gt;] [&lt;siege&gt;] [&lt;Country tag&gt; OPTIONAL]——添加一位海军将领
+			</div>
+			<div>ai_minister [&lt;0 = army, 1 = diplomacy, 2 = trade&gt;]——变更AI执政倾向：0=军事，1=外交，2=贸易
+			</div>
+			<div>ai(ai) [&lt;Target Country Tag&gt;]变更所有或一国的AI
+			</div>
+			<div>aiinvalid——取消AI（我猜的）
+			</div>
+			<div>aiview——显示AI其他信息
+			</div>
+			<div>annex [&lt;Target Country Tag&gt;] [&lt;Actor Country tag&gt; OPTIONAL]——无核吞并指定国家
+			</div>
+			<div>army_tradition [&lt;Amount&gt;] [&lt;Target Country tag&gt; OPTIONAL]——增加陆军传统
+			</div>
+			<div>authority [&lt;AMOUNT&gt;] [&lt;Country tag&gt; OPTIONAL]——增加国家权威(Inti religion)
+			</div>
+			<div>autosave——自动保存
+			</div>
+			<div>balance——Balance data dumped to game.log, with regions (development,number of provinces) and countries (tax, manpower, development, number of forts).
+			</div>
+			<div>bearhaslanded [&lt;Province ID&gt; OPTIONAL]——请勿随意使用！（手动滑稽）直译：熊已登陆
+			</div>
+			<div>canals——Debug canals on map
+			</div>
+			<div>cash [&lt;Amount&gt; OPTIONAL] [&lt;Target Country tag&gt; OPTIONAL]——+钱. Default is 5000 ducats.
+			</div>
+			<div>change_religion [&lt;province ID&gt;] [&lt;religion&gt;]变更省份宗教
+			</div>
+			<div>The religions have the following identifier:
+			</div>
+			<div>?Catholic: catholic&nbsp; &nbsp; &nbsp; &nbsp; #天主教
+			</div>
+			<div>?Protestant: protestant&nbsp; &nbsp; &nbsp; &nbsp; #新教
+			</div>
+			<div>?Reformed: reformed&nbsp; &nbsp; &nbsp; &nbsp; #改革宗
+			</div>
+			<div>?Orthodox: orthodox&nbsp; &nbsp; &nbsp; &nbsp; #正教
+			</div>
+			<div>?Coptic: coptic&nbsp; &nbsp; &nbsp; &nbsp; #科普特
+			</div>
+			<div>?Sunni: sunni&nbsp; &nbsp; &nbsp; &nbsp; #逊尼派
+			</div>
+			<div>?Shia: shiite&nbsp; &nbsp; &nbsp; &nbsp; #什叶派
+			</div>
+			<div>?Ibadi: ibadi&nbsp; &nbsp; &nbsp; &nbsp; #艾巴德派
+			</div>
+			<div>?Theravada: buddhism&nbsp; &nbsp; &nbsp; &nbsp; #南传佛教
+			</div>
+			<div>?Vajrayana: vajrayana&nbsp; &nbsp; &nbsp; &nbsp; #密宗
+			</div>
+			<div>?Mahayana: mahayana&nbsp; &nbsp; &nbsp; &nbsp; #汉传佛教
+			</div>
+			<div>?Confucian: confucianism&nbsp; &nbsp; &nbsp; &nbsp; #儒教
+			</div>
+			<div>?Shinto: shinto&nbsp; &nbsp; &nbsp; &nbsp; #神道教
+			</div>
+			<div>?Hindu: hinduism&nbsp; &nbsp; &nbsp; &nbsp; #印度教
+			</div>
+			<div>?Sikh: sikhism&nbsp; &nbsp; &nbsp; &nbsp; #锡克教
+			</div>
+			<div>?Animist: animism&nbsp; &nbsp; &nbsp; &nbsp; #泛灵信仰
+			</div>
+			<div>?Fetist: shamanism&nbsp; &nbsp; &nbsp; &nbsp; #萨满教
+			</div>
+			<div>?Totemist: totemism&nbsp; &nbsp; &nbsp; &nbsp; #图腾崇拜者
+			</div>
+			<div>?Inti: inti&nbsp; &nbsp; &nbsp; &nbsp; #因蒂
+			</div>
+			<div>?Nahuatl: nahuatl&nbsp; &nbsp; &nbsp; &nbsp; #纳瓦特
+			</div>
+			<div>?Mayan: mesoamerican_religion&nbsp; &nbsp; &nbsp; &nbsp; #纳玛雅信仰
+			</div>
+			<div>?Norse: norse_pagan_reformed&nbsp; &nbsp; &nbsp; &nbsp; #诺斯
+			</div>
+			<div>?Tengri: tengri_pagan_reformed&nbsp; &nbsp; &nbsp; &nbsp; #长生天（腾格里）
+			</div>
+			<div>?Jewish: jewish&nbsp; &nbsp; &nbsp; &nbsp; #犹太教
+			</div>
+			<div>?Zoroastrian: zoroastrian&nbsp; &nbsp; &nbsp; &nbsp; #祆教
+			</div>
+			<div><br />
+			</div>
+			<div>church_power [&lt;Amount&gt;] [&lt;Target Country tag&gt; OPTIONAL]教会力量（新教）
+			</div>
+			<div>clear——清除控制台记录
+			</div>
+			<div>clr_consort_flag [&lt;Tag&gt;] [&lt;Flag&gt;]——清除配偶的flag（？？？）
+			</div>
+			<div>clr_flag [&lt;Flag&gt;]——清除全部flag
+			</div>
+			<div>clr_prov_flag [&lt;Flag&gt;] [&lt;Province&gt;]——清除省份flag
+			</div>
+			<div><br />
+			</div>
+			<div>combatsound——战斗界面多久产生一次随机音效? 0-50（？？？）
+			</div>
+			<div>control [&lt;Province ID&gt;] [&lt;Country tag&gt; OPTIONAL]——变更省份控制者（上下两个表述都一样）
+			</div>
+			<div>controll [&lt;Province ID&gt;] [&lt;Country tag&gt; OPTIONAL]——变更省份控制者（上下两个表述都一样）
+			</div>
+			<div>corrupt [&lt;AMOUNT&gt;] [&lt;Country tag&gt; OPTIONAL]——给指定国家添加腐败
+			</div>
+			<div>country_modifier [&lt;country tag&gt;] [&lt;Modifier type&gt;]——显示指定国家的国家修正
+			</div>
+			<div>create_march [&lt;Target Country Tag&gt;] [&lt;Actor Country tag&gt; OPTIONAL]——指定国家变为指定国家的卫戍国
+			</div>
+			<div>culture [&lt;Province ID&gt;]变更省份（ID）文化为当前国家的主流文化
+			</div>
+			<div>date [date in format yyyy.mm.dd]——改变当前日期
+			</div>
+			<div>debug_info——切换调试信息
+			</div>
+			<div>debug_mode——显示额外信息
+			</div>
+			<div>debug_nogui——Toggles GUI on/off
+			</div>
+			<div>debug_reload_areas——重载areas地图
+			</div>
+			<div>debug_reload_regions——重载regions地图
+			</div>
+			<div>declare_war [&lt;attacker tag&gt;] [&lt;defender tag&gt;] [&lt;call willing allies&gt;]——指定两国开战 (无CB)
+			</div>
+			<div>delete_wars [&lt;Country tag&gt; OPTIONAL]——无停战终止战争
+			</div>
+			<div>die(kill) [&lt;Target Country Tag&gt; OPTIONAL]——杀死指定国家君主（缺省则死当前国家君主）
+			</div>
+			<div>dip [&lt;AMOUNT&gt; OPTIONAL] [&lt;Country tag&gt; OPTIONAL]——增加外交君主力量点数 (default value: 999)
+			</div>
+			<div>disaster [disaster_key]——增加灾难进度
+			</div>
+			<div>discover [&lt;Target Country Tag&gt;] [&lt;Actor Country tag&gt; OPTIONAL]已探索（发现）指定国家首都
+			</div>
+			<div>doom [&lt;AMOUNT&gt;] [&lt;Country tag&gt; OPTIONAL]增加末日值 (纳瓦特)
+			</div>
+			<div><br />
+			</div>
+			<div>economy []Prints out global economy statistics to game.log
+			</div>
+			<div><br />
+			</div>
+			<div>embrace [&lt;Province ID&gt;] [&lt;institution name&gt; optional]——省份获得指定思潮
+			</div>
+			<div>epicfail [&lt;Target Country Tag&gt; OPTIONAL]——使目标国家的间谍工作失败
+			</div>
+			<div>event [event id] [&lt;Target Country Tag&gt; OPTIONAL] [&lt;Option id&gt; OPTIONAL]——执行指定事件
+			</div>
+			<div>exhaust [&lt;Amount&gt;] [&lt;Country tag&gt; OPTIONAL]变更厌战指数
+			</div>
+			<div>fast_diplo——黑科技：快速外交。无视时间，外交官直接完成外交任务
+			</div>
+			<div>favors [&lt;Target Country tag&gt;] [&lt;Amount&gt;]——增加指定国家好感
+			</div>
+			<div>fervor [&lt;Amount&gt;] [&lt;Target Country tag&gt; OPTIONAL]——增加宗教热情 (改革宗)
+			</div>
+			<div>form_union [&lt;Country tag&gt;] [&lt;Country tag&gt; OPTIONAL]——指定国家与指定国家的建立联合统治
+			</div>
+			<div>fow(debug_fow) [&lt;Province ID&gt; OPTIONAL]——取消/开启指定省份战争迷雾
+			</div>
+			<div>frenzy——列强狂暴！！！（指定年份后列强必定狂暴，使用命令则立即狂暴）
+			</div>
+			<div>frenzy_off——关闭列强狂暴！！！
+			</div>
+			<div>fullscreen——切换全屏
+			</div>
+			<div>gamespeed [speed (0-5)]变更游戏速度
+			</div>
+			<div>godgodmode on/off——上帝模式（不解释）
+			</div>
+			<div>help [command name]显示所有控制台命令
+			</div>
+			<div>helphelp—— “No help for you!”
+			</div>
+			<div>helplog——Print out all console commands to game.log file.
+			</div>
+			<div>horde_unity [&lt;AMOUNT&gt;] [&lt;Country tag&gt; OPTIONAL]变更游牧团结
+			</div>
+			<div>ideadump——Dump all countries that have generic national ideas to game.log
+			</div>
+			<div>imperial_authority [&lt;Amount&gt;] [&lt;Country tag&gt; OPTIONAL]——增加皇帝权威
+			</div>
+			<div>infinite_combat——Infinite combat（据说也是黑科技，具体效果不明）
+			</div>
+			<div>inflation [&lt;Amount&gt;] [&lt;Country tag&gt; OPTIONAL]——变更通货膨胀
+			</div>
+			<div>integrate [&lt;Target Country Tag&gt;] [&lt;Actor Country tag&gt; OPTIONAL]——有核吞并指定国家
+			</div>
+			<div>karma [&lt;Amount&gt;] [&lt;Target Country tag&gt; OPTIONAL]——增加业力 (佛教)
+			</div>
+			<div>kill_cardinal [&lt;Countrytag&gt; OPTIONAL]——杀死列表第一位枢机主教
+			</div>
+			<div>kill_consort [&lt;Target Country Tag&gt; OPTIONAL]——杀妻（莫名又成杀妻风云了？）
+			</div>
+			<div>kill_heir [&lt;Target Country Tag&gt; OPTIONAL]——杀死指定国家的继承人
+			</div>
+			<div>kill_leader——随机杀死一个将领
+			</div>
+			<div>leader [&lt;fire&gt;] [&lt;shock&gt;] [&lt;maneuver&gt;] [&lt;siege&gt;] [&lt;Country tag&gt; OPTIONAL]——添加一位陆军将领
+			</div>
+			<div>leak——Leaks memory（一种黑科技的既视感~~~~233333）
+			</div>
+			<div>leak_gpu [Chunk size (bytes)] [Number of Chunks]——Leaks GPU memory
+			</div>
+			<div>legitimacy [&lt;AMOUNT&gt;] [&lt;Country tag&gt; OPTIONAL]——增指定国家正统性
+			</div>
+			<div>low_memory——Simulates a low memory alert and tries to reduce memory usage
+			</div>
+			<div>lucky [&lt;Country tag&gt; OPTIONAL]——设置指定国家为幸运国
+			</div>
+			<div>manpower [&lt;Amount&gt;] [&lt;Target Country tag&gt; OPTIONAL]——增加后备人力 (1000× [&lt;Amount&gt;]) (default 5)
+			</div>
+			<div>map_random [&lt;seed=-1&gt;] [&lt;restore&gt;] [&lt;nosmooth&gt;] [&lt;nosmoothcoasts&gt;] [&lt;topology&gt;] [&lt;terrain&gt;] [&lt;colormap&gt;] [&lt;minimap&gt;] [&lt;rivers&gt;] [&lt;trees&gt;]——随机新世界地图设定
+			</div>
+			<div>map_vertextextures——Toggle map rendering with vertex textures
+			</div>
+			<div>mapmode [Mapmode type (int)]——Change mapmode.
+			</div>
+			<div>memory——显示内存使用状况
+			</div>
+			<div>mil [&lt;AMOUNT&gt; OPTIONAL] [&lt;Country tag&gt; OPTIONAL]增加外交君主力量点数 (default value: 999)
+			</div>
+			<div>morehumans(humans) [num]——添加更多玩家
+			</div>
+			<div>msg——切换所有消息弹出设定
+			</div>
+			<div>native_uprising [&lt;ProvinceID&gt;]——指定省份土著暴动
+			</div>
+			<div>navy_tradition [&lt;Amount&gt;] [&lt;Target Country tag&gt; OPTIONAL]——增加海军传统
+			</div>
+			<div>nextsong——切歌
+			</div>
+			<div>nolimit_missions——Removes the limit of number of major missions to choose from
+			</div>
+			<div>nopausetext——Toggles the pausebanner for nicer screenshots.
+			</div>
+			<div>nudge——Go to the nudge tool
+			</div>
+			<div>observe_mode []——变更观众模式设定
+			</div>
+			<div>observe(spectator)——观众模式
+			</div>
+			<div>oos——Make the client go oos
+			</div>
+			<div>own [&lt;Province ID&gt;] [&lt;Country tag&gt; OPTIONAL]——变更省份拥有权
+			</div>
+			<div>own_core [&lt;Province ID&gt;] [&lt;Country tag&gt; OPTIONAL]——变更省份拥有权并添加核心
+			</div>
+			<div>piety [&lt;AMOUNT&gt; OPTIONAL] [&lt;Country tag&gt; OPTIONAL]——增加虔诚. (穆斯林) (default: +10)
+			</div>
+			<div>pirate [&lt;Province ID&gt;]——指定水域出现海盗（游戏中已经不存在“海盗”势力）
+			</div>
+			<div>poll——查看可触发的事件
+			</div>
+			<div>population [&lt;ProvinceID&gt;] [&lt;Amount&gt;]——增加殖民地人口
+			</div>
+			<div>power [&lt;stability/tech_table_key/idea_key&gt;] [&lt;Country tag&gt; OPTIONAL]——增加全君主力量点数用于指定工作
+			</div>
+			<div>powerpoints [&lt;AMOUNT&gt; OPTIONAL] [&lt;Country tag&gt; OPTIONAL]——增加全君主力量点数
+			</div>
+			<div>powerspend []——Prints out global powerspend statistics
+			</div>
+			<div>prestige [&lt;Amount&gt;] [&lt;Country tag&gt; OPTIONAL]——增加指定国家威望 (default value: 5)
+			</div>
+			<div>prices——Price Info to game.log
+			</div>
+			<div>print_flags——显示全部flag
+			</div>
+			<div>print_prov_flags [&lt;Prov ID&gt;]——显示省份flag
+			</div>
+			<div>PrintSynchStuff——Prints random count and seed
+			</div>
+			<div>protectorate [&lt;Target Country Tag&gt;] [&lt;Actor Country tag&gt; OPTIONAL]——指定国家变为指定国家的保护国
+			</div>
+			<div>province_modifier——显示省份修正
+			</div>
+			<div>reform [&lt;Target Province ID&gt;]——在指定省份开始（改革？？？）
+			</div>
+			<div>refreshknowledgecount []——Refresh knowledge perf couner（？？？）
+			</div>
+			<div>reinitchat []——Posts a CChatSyncAllCommand（？？？）
+			</div>
+			<div>reload [file name]——重新加载文件
+			</div>
+			<div>reload_canals——Reload the canal bitmaps
+			</div>
+			<div>reload_heightmap——Reloads the heightmap
+			</div>
+			<div>reload_lakes——Reloads the lakes
+			</div>
+			<div>reload_map——Reloads the map
+			</div>
+			<div>reload_provincemap——Reloads the provincemap
+			</div>
+			<div>reload_straits——Update strait vertex buffers
+			</div>
+			<div>reload_treemap——Reloads the treemap
+			</div>
+			<div>reloadfx [Arguments: map/mapname/postfx or *.fx filename]——Reloads the shader
+			</div>
+			<div>reloadinterface——重载游戏界面
+			</div>
+			<div>reloadloc——重载翻译文件
+			</div>
+			<div>reloadtexture [texture file name]——Reloads the specified texture
+			</div>
+			<div>reloadtradewinds——Reloads trade winds
+			</div>
+			<div>remove_cb [&lt;casus belli tag&gt;] [&lt;target country tag&gt;] [&lt;Actor Country tag&gt; OPTIONAL]——移除指定国家的CB
+			</div>
+			<div>remove_claim [&lt;Province ID&gt;] [&lt;Country tag&gt; OPTIONAL]——移除宣称
+			</div>
+			<div>remove_core [&lt;Province ID&gt;] [&lt;Country tag&gt; OPTIONAL]——移除核心
+			</div>
+			<div>remove_defender_faith——移除当前宗教守护
+			</div>
+			<div>remove_interest [&lt;Country tag&gt;]——从感兴趣的国家列表中移除指定国家
+			</div>
+			<div>remove_march [&lt;Target Country Tag&gt;] [&lt;Actor Country tag&gt; OPTIONAL]——取消卫戍国地位
+			</div>
+			<div>remove_rival [&lt;Country tag&gt;]——移除一个宿敌
+			</div>
+			<div>remove_trait [&lt;personality tag&gt;]——移除君主特质
+			</div>
+			<div>rendertype——Reports what render backend is used
+			</div>
+			<div>reset_economy []——重置全球经济统计数据
+			</div>
+			<div>reset_god——重置信仰神灵
+			</div>
+			<div>reset_migrate——重置迁徙事件
+			</div>
+			<div>reset_mission_cancel [&lt;Country tag&gt;]——重置取消任务后的等待时间
+			</div>
+			<div>reset_powerspend []——Resets global powerspend statistics
+			</div>
+			<div>revolt [&lt;Province ID&gt;]——指定省份发生叛乱
+			</div>
+			<div>revolution_target [&lt;CountryTag&gt;]——设定指定国家革命目标
+			</div>
+			<div>rgb(rgb) [&lt;Amount&gt;]——Prints desired amount of random color values to game.log
+			</div>
+			<div>run []——Runs effects in specified file
+			</div>
+			<div>sailors [&lt;Amount&gt;] [&lt;Target Country tag&gt; OPTIONAL]——增加水手 (default value: 5000)
+			</div>
+			<div>savegame——存档
+			</div>
+			<div>score——Score data dumped to game.log（得分）
+			</div>
+			<div>selflearningai——开启AI自学功能(就EU的破AI还能这么凶残?)
+			</div>
+			<div>set_consort_flag [&lt;Tag&gt;] [&lt;Flag&gt;]——添加一个全局flag
+			</div>
+			<div>set_flag [&lt;Flag&gt;]——添加一个全局flag
+			</div>
+			<div>set_leader_trait [&lt;personality&gt;]——添加将领特质
+			</div>
+			<div>set_prov_flag [&lt;Flag&gt;] [&lt;Province&gt;]——添加一个省份flag
+			</div>
+			<div>setmissionaryprogress [&lt;ProvinceID&gt;] [&lt;Amount&gt;]——变更指定省份传教进度
+			</div>
+			<div>SetRandomCount——Sets the randomcount to 0 or arg
+			</div>
+			<div>show_ideas [&lt;Country tag&gt;]——National ideas of the specified country dumped to game.log
+			</div>
+			<div>siege [&lt;Province ID&gt;]——指定省份围城即刻胜利
+			</div>
+			<div>smoothframelog——Toggles smooth frame logging
+			</div>
+			<div>spawn [&lt;Province ID&gt;] [&lt;SubUnit Type&gt;]——在指定省份创造一个单位
+			</div>
+			<div>spawnactor [&lt;Actorname&gt;] [&lt;Province ID&gt;] [&lt;Animation&gt; OPTIONAL]——Spawns an actor with an optional animation
+			</div>
+			<div>spectate(spectate)——观众模式
+			</div>
+			<div>spritelevel [&lt;Sprite level&gt;]——Sets a forced sprite level. Specify no argument to reset.
+			</div>
+			<div>spynetwork [&lt;Target Country tag&gt;] [&lt;Amount&gt;]——添加指定国家的间谍网
+			</div>
+			<div>stability [&lt;AMOUNT&gt; OPTIONAL] [&lt;Country tag&gt; OPTIONAL]——变更指定国家的稳定度(to maximum without value)
+			</div>
+			<div>state [&lt;Province ID&gt;]——变更省份直辖状态
+			</div>
+			<div>stats——Stats dumped to game.log
+			</div>
+			<div>surrender——认怂！
+			</div>
+			<div>tag [&lt;Country tag&gt;]——切换控制器到其他国家
+			</div>
+			<div>tech [&lt;AMOUNT&gt;]——科技等级变更
+			</div>
+			<div>test_achievement [&lt;achievement&gt;]——测试一个特定的成就
+			</div>
+			<div>testevent [&lt;Event ID&gt;] [&lt;Character ID&gt;]——测试事件但不触发
+			</div>
+			<div>testmission [&lt;Mission Name&gt;]——测试任务但不触发
+			</div>
+			<div>texture_usage——Prints texture usage
+			</div>
+			<div>ti(debug_ti)——黑科技：取消战争迷雾
+			</div>
+			<div>time——在命令框中显示当前时间
+			</div>
+			<div>timer——输出调试计时信息
+			</div>
+			<div>timer_reset——重置调试时间
+			</div>
+			<div>timer_restart——重启调试时间
+			</div>
+			<div>timer_start——开始调试时间
+			</div>
+			<div>timer_stop——停止调试时间
+			</div>
+			<div>touch_test——Testing touch
+			</div>
+			<div>trust [&lt;Target Country tag&gt;] [&lt;Amount&gt;]——增加指定国家信任度
+			</div>
+			<div>update_loc [localization tag]——Updates the localization tag file
+			</div>
+			<div>validateevents——重新检测事件但不触发
+			</div>
+			<div>vassalize [&lt;Target Country Tag&gt;] [&lt;Actor Country tag&gt; OPTIONAL]——指定国家变为指定国家的附庸国
+			</div>
+			<div>version——显示游戏版本
+			</div>
+			<div>victorycard——单人游戏胜利（？？？）
+			</div>
+			<div>window(wnd) [Arguments: open/close] [window gui name]——窗口模式
+			</div>
+			<div>winwars——最大战争得分
+			</div>
+			<div>yesman——黑科技：AI不会拒绝你的任何要求 (on: always accept; off: normal response)
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div>几个强大的EVENT：
+			</div>
+			<div><br />
+			</div>
+			<div>trade_company_events.3+省份ID&nbsp; &nbsp; &nbsp; &nbsp; 殖民成功&nbsp; &nbsp; &nbsp; &nbsp; 改变指定的省份的文化并 增加1税基。
+			</div>
+			<div>5056&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 外交侮辱&nbsp; &nbsp; &nbsp; &nbsp; 给予外交侮辱的CB OR +60邻国好感
+			</div>
+			<div>5073+省份ID&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 新大陆宣称&nbsp; &nbsp; &nbsp; &nbsp; +1 base tax /&nbsp; +1 base manpower/&nbsp; +1 base production
+			</div>
+			<div>flavor_jap.15&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; “The Za”&nbsp; &nbsp; &nbsp; &nbsp; +10重商主义
+			</div>
+			<div>flavor_sco.8&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 格拉斯哥商会&nbsp; &nbsp; &nbsp; &nbsp; +5重商主义
+			</div>
+			<div>colonial.12+省份ID&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 亨特的呼唤&nbsp; &nbsp; &nbsp; &nbsp; 省份特产变毛皮
+			</div>
+			<div>colonial.13+省份ID&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 毛皮贸易减少&nbsp; &nbsp; &nbsp; &nbsp; 特产粮食OR船具
+			</div>
+			<div>colonial.18+省份ID&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 新大陆的咖啡&nbsp; &nbsp; &nbsp; &nbsp; 特产咖啡
+			</div>
+			<div>9520+省份ID&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; XX废除奴隶制&nbsp; &nbsp; &nbsp; &nbsp; 特产变为未知
+			</div>
+			<div>9469&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Lux Stella&nbsp; &nbsp; &nbsp; &nbsp; 产生 6&nbsp; / 6&nbsp; / 6 的继承人
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+		</div>
+	</body>
+</html>
