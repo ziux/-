@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<p>&nbsp;
+			</p>
+			<p><strong>代码</strong>
+			</p>
+			<div class="cnblogs_Highlighter">
+				<pre class="brush:python;gutter:true;">
+# -*- coding: utf-8 -*-
+"""
+@Author: 舍名利
+@Date  : 2018/4/2
+"""
+from tkinter import *
+
+
+def call_back(event):
+    print(event.keysym)
+
+
+def main():
+    root = Tk()
+
+    # 创建一个框架，在这个框架中响应事件
+    frame = Frame(root,
+                  width=200, height=200,
+                  background='green')
+
+    # 这样就不用查看 键盘特殊按键的keysym表了。
+    # 试一下就知道了
+    frame.bind("&lt;KeyPress&gt;", call_back)
+    frame.pack()
+
+    # 当前框架被选中，意思是键盘触发，只对这个框架有效
+    frame.focus_set()
+
+    mainloop()
+
+
+if __name__ == '__main__':
+    main()
+</pre>
+			</div>
+			<p>　　
+			</p>
+			<p><strong>结果</strong>
+			</p>
+			<p><span style="font-weight: bold;"><img src="data:image/png;base64,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" /></span>
+			</p>
+			<p>按键测试
+			</p>
+			<div class="cnblogs_Highlighter">
+				<pre class="brush:python;gutter:true;">
+"D:\Program Files\Python36\python.exe" C:/Users/Administrator/Desktop/blog_update/tkinter/bind_event_keysym_demo.py
+1
+1
+2
+2
+2
+Control_L
+Alt_L
+
+进程已结束,退出代码0
+</pre>
+			</div>
+			<p>　　&nbsp;
+			</p>
+		</div>
+	</body>
+</html>

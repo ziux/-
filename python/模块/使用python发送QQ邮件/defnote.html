@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; ">
+		<div>
+			<p><span style="font-family: Microsoft YaHei; font-size: 16px;">这里用到了Python的两个包来发送邮件： smtplib 和 email 。</span><br /><span style="font-family: Microsoft YaHei; font-size: 16px;">　　Python 的 email 模块里包含了许多实用的邮件格式设置函数，可以用来创建邮件“包裹”。使用的 MIMEText 对象，为底层的 MIME（Multipurpose Internet MailExtensions，多用途互联网邮件扩展类型）协议传输创建了一封空邮件，最后通过高层的SMTP 协议发送出去。 MIMEText 对象 msg 包括收发邮箱地址、邮件正文和主题，Python 通过它就可以创建一封格式正确的邮件。smtplib 模块用来设置服务器连接的相关信息。</span>
+			</p>
+			<p><span style="font-family: Microsoft YaHei; font-size: 16px;">　　要想通过QQ邮箱来发送邮件，需要开启QQ邮箱的设置-账户里SMTP服务，接下来会通过发送短信验证来获得授权码，有了授权码后就可以在代码里添加了。</span>
+			</p>
+			<p><br />
+			</p>
+			<p><span style="font-family: Microsoft YaHei; font-size: 16px;">　　接下来看看QQ的邮件服务器配置：</span>
+			</p>
+			<p><span style="font-family: 'Microsoft YaHei';"><br /></span>
+			</p>
+			<p><span style="font-family: Microsoft YaHei; font-size: 16px;">根据此配置来设置smtplib.SMTP_SSL()函数的参数。</span>
+			</p>
+			<p><span style="font-family: Microsoft YaHei; font-size: 16px;">具体代码如下：</span>
+			</p>
+			<div class="cnblogs_code">
+				<pre>
+<span style="color: #008000;">#</span><span style="color: #008000;">coding=utf-8</span>
+<span style="color: #0000ff;">import</span><span style="color: #000000;"> smtplib
+</span><span style="color: #0000ff;">from</span> email.mime.text <span style="color: #0000ff;">import</span><span style="color: #000000;"> MIMEText
+msg_from</span>=<span style="color: #800000;">'</span><span style="color: #800000;">xxxxxxxxx@qq.com</span><span style="color: #800000;">'</span>                                 <span style="color: #008000;">#</span><span style="color: #008000;">发送方邮箱</span>
+passwd=<span style="color: #800000;">'</span><span style="color: #800000;">abcdefghigklmnop</span><span style="color: #800000;">'</span>                                   <span style="color: #008000;">#填入</span><span style="color: #008000;">发送方邮箱的授权码</span>
+msg_to=<span style="color: #800000;">'</span><span style="color: #800000;">xxxxx@foxmail.com</span><span style="color: #800000;">'</span>                                  <span style="color: #008000;">#</span><span style="color: #008000;">收件人邮箱</span>
+<span style="color: #000000;">                            
+subject</span>=<span style="color: #800000;">"</span><span style="color: #800000;">python邮件测试</span><span style="color: #800000;">"</span>                                     <span style="color: #008000;">#</span><span style="color: #008000;">主题     </span>
+content=<span style="color: #800000;">"</span><span style="color: #800000;">这是我使用python smtplib及email模块发送的邮件</span><span style="color: #800000;">"</span>     　　<span style="color: #008000;">#</span><span style="color: #008000;">正文</span>
+msg =<span style="color: #000000;"> MIMEText(content)
+msg[</span><span style="color: #800000;">'</span><span style="color: #800000;">Subject</span><span style="color: #800000;">'</span>] =<span style="color: #000000;"> subject
+msg[</span><span style="color: #800000;">'</span><span style="color: #800000;">From</span><span style="color: #800000;">'</span>] =<span style="color: #000000;"> msg_from
+msg[</span><span style="color: #800000;">'</span><span style="color: #800000;">To</span><span style="color: #800000;">'</span>] =<span style="color: #000000;"> msg_to
+</span><span style="color: #0000ff;">try</span><span style="color: #000000;">:
+    s </span>= smtplib.SMTP_SSL(<span style="color: #800000;">"</span><span style="color: #800000;">smtp.qq.com</span><span style="color: #800000;">"</span>,465<span style="color: #000000;">)　　　　　　　　　　<span style="color: #008000;">#<span style="color: #008000;">邮件服务器及端口号</span></span>
+    s.login(msg_from, passwd)
+    s.sendmail(msg_from, msg_to, msg.as_string())
+    </span><span style="color: #0000ff;">print</span> <span style="color: #800000;">"</span><span style="color: #800000;">发送成功</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">except</span><span style="color: #000000;"> s.SMTPException,e:
+    </span><span style="color: #0000ff;">print</span> <span style="color: #800000;">"</span><span style="color: #800000;">发送失败</span><span style="color: #800000;">"</span>
+<span style="color: #0000ff;">finally</span><span style="color: #000000;">:
+    s.quit()</span></pre>
+			</div>
+			<p>
+			</p>
+		</div>
+	</body>
+</html>

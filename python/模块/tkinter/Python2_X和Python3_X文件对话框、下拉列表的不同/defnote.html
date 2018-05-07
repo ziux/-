@@ -1,0 +1,84 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h1><span style="color: rgb(255, 0, 0); ">Python2.X和Python3.X文件对话框、下拉列表的不同 &nbsp;</span>
+			</h1>
+			<p>今天初次使用Python Tkinter来做了个简单的记事本程序。发现Python2.x和Python3.x的Tkinter模块的好多内置函数都有所改变，这里简单整理一下以备日后查验。
+			</p>
+			<h2><span style="color: rgb(0, 255, 0); ">一.导入方式：</span>
+			</h2>
+			<p>　　Python2.x:
+			</p>
+			<p>　　　　from Tkinter import *
+			</p>
+			<p>　　Python3.x:
+			</p>
+			<p>　　　　from tkinter import *
+			</p>
+			<h2><span style="color: rgb(0, 255, 0); ">二.打开文件框：</span>
+			</h2>
+			<p>　　Python2.X：
+			</p>
+			<p>　　　　import tkFileDialog
+			</p>
+			<p>　　　　filename = tkFileDialog.askopenfilename(filetypes=[(&quot;bmp格式&quot;.decode(&apos;gbk&apos;),&quot;bmp&quot;)])
+			</p>
+			<p>　　　　#注意：Python2.X会有中文乱码问题，需要在&quot;中文&quot;后加.decode(&apos;gbk&apos;) 。Python3.X则不需要
+			</p>
+			<p>　　　　这里可以加入属性： initialdir 设置默认初始路径。即：
+			</p>
+			<p>　　　　FileName = tkFileDialog.askopenfilename(filetypes=[(&quot;bmp格式&quot;.decode(&apos;gbk&apos;),&quot;bmp&quot;)], initialdir = &apos;E:&apos;)
+			</p>
+			<p>　　Python3.X：
+			</p>
+			<p>　　　　import tkinter.filedialog
+			</p>
+			<p>　　　　filename=tkinter.filedialog.askopenfilename(filetypes=[(&quot;bmp格式&quot;,&quot;bmp&quot;)])
+			</p>
+			<h2><span style="color: rgb(0, 255, 0); ">三.对话框：</span>
+			</h2>
+			<p>　　Python2.X：
+			</p>
+			<p>　　　　import tkFileDialog
+			</p>
+			<p>　　　　showinfo(title=&apos;中文标题&apos;.decode(&apos;gbk&apos;), message=&apos;XXX&apos;) #注意:中文要加.decode(&apos;gbk&apos;)
+			</p>
+			<p>　　Python3.X：
+			</p>
+			<p>　　　　import tkinter.messagebox
+			</p>
+			<p>　　　　tkinter.messagebox.showinfo(title=&apos;XXX&apos;,message=&apos;XXX&apos;)
+			</p>
+			<h2><span style="color: rgb(0, 255, 0); ">四.下拉列表：</span>
+			</h2>
+			<p>　　Python2.X：
+			</p>
+			<p>　　　　import ttk
+			</p>
+			<p>　　　　#注意：如果写from ttk import * 会影响Label的属性，这里可能Label会自动调用ttk里的Label？猜测而已
+			</p>
+			<p>　　Python3.X：
+			</p>
+			<p>　　　　from tkinter import ttk
+			</p>
+			<p>　　　　用法一样：
+			</p>
+			<p>　　　　　　myComboList = [&apos;AAA&apos;,&apos;BBB&apos;,]
+			</p>
+			<p>　　　　　　myCombox = ttk.Combobox(root, values=myComboList )
+			</p>
+			<p>　　　　　　myCombox .pack()
+			</p>
+		</div>
+	</body>
+</html>

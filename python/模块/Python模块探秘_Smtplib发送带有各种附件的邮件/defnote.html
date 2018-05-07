@@ -1,0 +1,166 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space; ">
+		<div>
+			<div class="article_title">
+				<h1><span style="font-size: 13px; font-weight: normal; ">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</span>
+				</h1>
+			</div>
+			<div id="article_content" class="article_content csdn-tracking-statistics" data-pid="blog" data-mod="popu_307" data-dsm="post">
+				<div class="markdown_views">
+					<p>这两天对Python的邮件模块比较感兴趣，于是就查了查资料。同时在实际的编码过程中也遇到了各种各样的问题。下面我就来分享一下我与smtplib的故事。
+					</p>
+					<hr />
+					<h2 id="前提条件">前提条件
+					</h2>
+					<p>我的上一篇博文里面讲解了，发送邮件必须的条件。这里同样是适用的。大致就是要开启邮箱的SMPT/POP服务等等。如果不明白，可以看看<a href="http://blog.csdn.net/marksinoberg/article/details/51501377">发送纯文本邮件</a>。里面讲的还不错。 :-)
+					</p>
+					<h2 id="核心知识点">核心知识点
+					</h2>
+					<p>因为今天主要讲解的是如何发送带有附件的邮件，那么核心肯定是附件了。怎么才能发附件呢？
+					</p>
+					<p>其实我们换个思路，就不难理解了。因为我们发送邮件，经过了应用层–&gt;&gt; 传输层–&gt;&gt; 网络层–&gt;&gt;数据链路层–&gt;&gt;物理层。这一系列的步骤，全都变成了比特流了。所以无论是纯文本，图片，亦或是其他类型的文件。在比特流的面前，都是平等的。所以我们发送附件，也是按照发送纯文本的模式来做就行，只不过加上一些特殊的标记即可。
+					</p>
+					<pre class="prettyprint">
+<code class=" hljs livecodeserver">
+\<span class="hljs-comment"># 首先是xlsx类型的附件</span>
+xlsxpart = MIMEApplication(<span class="hljs-built_in">open</span>(<span class="hljs-string">'test.xlsx'</span>, <span class="hljs-string">'rb'</span>).<span class="hljs-built_in">read</span>())
+xlsxpart.add_header(<span class="hljs-string">'Content-Disposition'</span>, <span class="hljs-string">'attachment'</span>, filename=<span class="hljs-string">'test.xlsx'</span>)
+msg.attach(xlsxpart)
+
+\<span class="hljs-comment"># jpg类型的附件</span>
+jpgpart = MIMEApplication(<span class="hljs-built_in">open</span>(<span class="hljs-string">'beauty.jpg'</span>, <span class="hljs-string">'rb'</span>).<span class="hljs-built_in">read</span>())
+jpgpart.add_header(<span class="hljs-string">'Content-Disposition'</span>, <span class="hljs-string">'attachment'</span>, filename=<span class="hljs-string">'beauty.jpg'</span>)
+msg.attach(jpgpart)
+
+\<span class="hljs-comment"># mp3类型的附件</span>
+mp3part = MIMEApplication(<span class="hljs-built_in">open</span>(<span class="hljs-string">'kenny.mp3'</span>, <span class="hljs-string">'rb'</span>).<span class="hljs-built_in">read</span>())
+mp3part.add_header(<span class="hljs-string">'Content-Disposition'</span>, <span class="hljs-string">'attachment'</span>, filename=<span class="hljs-string">'benny.mp3'</span>)
+msg.attach(mp3part)</code></pre>
+					<p>经过这三小段的代码，想必你已经很清楚了吧。无非就是使用MIMEApplication进行包装一下，然后设置一下内容。最后添加到邮件内容。就是这几步，就搞定了。
+					</p>
+					<h2 id="完整的代码">完整的代码
+					</h2>
+					<pre class="prettyprint">
+<code class=" hljs python"><span class="hljs-comment"># coding:utf-8</span>
+
+<span class="hljs-comment">#    __author__ = 'Mark sinoberg'</span>
+<span class="hljs-comment">#    __date__ = '2016/5/26'</span>
+<span class="hljs-comment">#    __Desc__ = 实现发送带有各种附件类型的邮件</span>
+
+<span class="hljs-keyword">import</span> urllib, urllib2
+<span class="hljs-keyword">import</span> smtplib
+<span class="hljs-keyword">from</span> email.mime.multipart <span class="hljs-keyword">import</span> MIMEMultipart
+<span class="hljs-keyword">from</span> email.mime.text <span class="hljs-keyword">import</span> MIMEText
+<span class="hljs-keyword">from</span> email.mime.application <span class="hljs-keyword">import</span> MIMEApplication
+
+username = <span class="hljs-string">'156408XXXXX@163.com'</span>
+password = <span class="hljs-string">'XXXXXXXX'</span>
+sender = username
+receivers = <span class="hljs-string">','</span>.join([<span class="hljs-string">'10643XXXX2@qq.com'</span>])
+
+<span class="hljs-comment"># 如名字所示： Multipart就是多个部分</span>
+msg = MIMEMultipart()
+msg[<span class="hljs-string">'Subject'</span>] = <span class="hljs-string">'Python mail Test'</span>
+msg[<span class="hljs-string">'From'</span>] = sender
+msg[<span class="hljs-string">'To'</span>] = receivers
+
+<span class="hljs-comment"># 下面是文字部分，也就是纯文本</span>
+puretext = MIMEText(<span class="hljs-string">'我是纯文本部分，'</span>)
+msg.attach(puretext)
+
+<span class="hljs-comment"># 下面是附件部分 ，这里分为了好几个类型</span>
+
+<span class="hljs-comment"># 首先是xlsx类型的附件</span>
+xlsxpart = MIMEApplication(open(<span class="hljs-string">'test.xlsx'</span>, <span class="hljs-string">'rb'</span>).read())
+xlsxpart.add_header(<span class="hljs-string">'Content-Disposition'</span>, <span class="hljs-string">'attachment'</span>, filename=<span class="hljs-string">'test.xlsx'</span>)
+msg.attach(xlsxpart)
+
+<span class="hljs-comment"># jpg类型的附件</span>
+jpgpart = MIMEApplication(open(<span class="hljs-string">'beauty.jpg'</span>, <span class="hljs-string">'rb'</span>).read())
+jpgpart.add_header(<span class="hljs-string">'Content-Disposition'</span>, <span class="hljs-string">'attachment'</span>, filename=<span class="hljs-string">'beauty.jpg'</span>)
+msg.attach(jpgpart)
+
+<span class="hljs-comment"># mp3类型的附件</span>
+mp3part = MIMEApplication(open(<span class="hljs-string">'kenny.mp3'</span>, <span class="hljs-string">'rb'</span>).read())
+mp3part.add_header(<span class="hljs-string">'Content-Disposition'</span>, <span class="hljs-string">'attachment'</span>, filename=<span class="hljs-string">'benny.mp3'</span>)
+msg.attach(mp3part)
+
+<span class="hljs-comment">##  下面开始真正的发送邮件了</span>
+<span class="hljs-keyword">try</span>:
+    client = smtplib.SMTP()
+    client.connect(<span class="hljs-string">'smtp.163.com'</span>)
+    client.login(username, password)
+    client.sendmail(sender, receivers, msg.as_string())
+    client.quit()
+    <span class="hljs-keyword">print</span> <span class="hljs-string">'带有各种附件的邮件发送成功！'</span>
+<span class="hljs-keyword">except</span> smtplib.SMTPRecipientsRefused:
+    <span class="hljs-keyword">print</span> <span class="hljs-string">'Recipient refused'</span>
+<span class="hljs-keyword">except</span> smtplib.SMTPAuthenticationError:
+    <span class="hljs-keyword">print</span> <span class="hljs-string">'Auth error'</span>
+<span class="hljs-keyword">except</span> smtplib.SMTPSenderRefused:
+    <span class="hljs-keyword">print</span> <span class="hljs-string">'Sender refused'</span>
+<span class="hljs-keyword">except</span> smtplib.SMTPException,e:
+    <span class="hljs-keyword">print</span> e.message
+</code></pre>
+					<h2 id="验证结果">验证结果
+					</h2>
+					<p>没有什么比来张图片更有说服力的了。如图 <br /><img src="https://img-blog.csdn.net/20160526125751285" alt="带有各种附件的邮件结果图" title="" />
+					</p>
+					<h2 id="错误总结">错误总结
+					</h2>
+					<p>我遇到的错误如下：
+					</p>
+					<pre class="prettyprint">
+<code class=" hljs tex">D:<span class="hljs-command">\Software</span><span class="hljs-command">\Python</span>2<span class="hljs-command">\python</span>.exe E:/Code/Python/MyTestSet/mail/withappedix.py
+Traceback (most recent call last):
+  File "E:/Code/Python/MyTestSet/mail/withappedix.py", line 51, in &lt;module&gt;
+    client.sendmail(sender, receivers, msg.as_string())
+  File "D:<span class="hljs-command">\Software</span><span class="hljs-command">\Python</span>2<span class="hljs-command">\lib</span><span class="hljs-command">\email</span><span class="hljs-command">\message</span>.py", line 137, in as_string
+    g.flatten(self, unixfrom=unixfrom)
+  File "D:<span class="hljs-command">\Software</span><span class="hljs-command">\Python</span>2<span class="hljs-command">\lib</span><span class="hljs-command">\email</span><span class="hljs-command">\generator</span>.py", line 83, in flatten
+    self._write(msg)
+  File "D:<span class="hljs-command">\Software</span><span class="hljs-command">\Python</span>2<span class="hljs-command">\lib</span><span class="hljs-command">\email</span><span class="hljs-command">\generator</span>.py", line 115, in _write
+    self._write_headers(msg)
+  File "D:<span class="hljs-command">\Software</span><span class="hljs-command">\Python</span>2<span class="hljs-command">\lib</span><span class="hljs-command">\email</span><span class="hljs-command">\generator</span>.py", line 164, in _write_headers
+    v, maxlinelen=self._maxheaderlen, header_name=h).encode()
+  File "D:<span class="hljs-command">\Software</span><span class="hljs-command">\Python</span>2<span class="hljs-command">\lib</span><span class="hljs-command">\email</span><span class="hljs-command">\header</span>.py", line 410, in encode
+    value = self._encode_chunks(newchunks, maxlinelen)
+  File "D:<span class="hljs-command">\Software</span><span class="hljs-command">\Python</span>2<span class="hljs-command">\lib</span><span class="hljs-command">\email</span><span class="hljs-command">\header</span>.py", line 370, in _encode_chunks
+    _max_append(chunks, s, maxlinelen, extra)
+  File "D:<span class="hljs-command">\Software</span><span class="hljs-command">\Python</span>2<span class="hljs-command">\lib</span><span class="hljs-command">\email</span><span class="hljs-command">\quoprimime</span>.py", line 97, in _max_append
+    L.append(s.lstrip())
+AttributeError: 'list' object has no attribute 'lstrip'
+
+Process finished with exit code 1
+</code></pre>
+					<p>我的解决办法是 <br />
+						<code>
+
+
+receiver parameter was list type. either it should be list converted to string using join method or if it is a single recipient, then pass it as a string only</code>
+					</p>
+					<p>是的，就是
+						<code>
+
+
+receivers = ','.join(['10XXXXXXXX@qq.com'])</code>。这样就搞定了。
+					</p>
+					<p>也许，你遇到的错误不是我这个，那么也不用担心，我这里有一份比较齐全的错误码对照表。你可以对照着你的错误码来查找具体的错误原因。这样有的放矢，效率会更高一点的。
+					</p>
+					<p>在编码的过程中，我也是遇到了很多意想不到的错误。而这些错误的错误码对我们来说是很有用的。这对我们测试代码以及找到其中出错的原因和有帮助。&nbsp;<br />
+					</p>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
