@@ -39,3 +39,16 @@ remote: Compressing objects: 100% (13/13), done.
 remote: Total 209581 (delta 0), reused 12 (delta 0), pack-reused 209561
 Receiving objects: 100% (209581/209581), 72.32 MiB | 405.00 KiB/s, done.
 Resolving deltas: 100% (176933/176933), done.
+apiVersion: networking.istio.io/v1alpha3
+kind: ServiceEntry
+metadata:
+  name: svc-entry
+spec:
+  hosts:
+  - ext-svc.example.com
+  ports:
+  - number: 443
+    name: https
+    protocol: HTTPS
+  location: MESH_EXTERNAL
+  resolution: DNS
