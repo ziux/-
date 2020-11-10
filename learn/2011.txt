@@ -1,11 +1,4 @@
-Git 设置和取消代理
-
-isea533 2018-12-03 09:51:45  25306  收藏 13
-分类专栏： 解决问题 文章标签： git代理
-最后发布:2018-12-03 09:51:45
-首次发布:2018-12-03 09:51:45
-版权
-参考： https://gist.github.com/laispace/666dd7b27e9116faece6
+--------Git 设置和取消代理------
 
 前提是你本地有 socks5 代理。
 
@@ -52,3 +45,12 @@ spec:
     protocol: HTTPS
   location: MESH_EXTERNAL
   resolution: DNS
+Kubernetes 提供了一个类似于 docker run 的命令 kubectl run，可以方便的创建一个容器（实际上创建的是一个由 deployment 来管理的 Pod）
+kubectl get - 类似于 docker ps，查询资源列表
+kubectl describe - 类似于 docker inspect，获取资源的详细信息
+kubectl logs - 类似于 docker logs，获取容器的日志
+kubectl exec - 类似于 docker exec，在容器内执行一个命令
+--------gitbook安装-------
+npm install gitbook-cli -g
+--------gitbook安装-------
+npm install gitbook-cli -g

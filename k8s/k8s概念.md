@@ -11,3 +11,40 @@ Kubernetes 主要由以下几个核心组件组成：
 - kube-proxy 负责为 Service 提供 cluster 内部的服务发现和负载均衡
 
 ![img](.media/architecture.png)
+
+
+
+## 核心概念	
+
+### Container
+
+
+
+### pod
+最小调度和资源单元
+一组容器的抽象,包含一个或多个容器 
+
+### Node
+
+Node 是 Pod 真正运行的主机，可以是物理机，也可以是虚拟机。为了管理 Pod，每个 Node 节点上至少要运行 container runtime（比如 docker 或者 rkt）、`kubelet` 和 `kube-proxy` 服务
+
+### Namespace
+
+Namespace 是对一组资源和对象的抽象集合，比如可以用来将系统内部的对象划分为不同的项目组或用户组
+
+### Volume
+卷,用来管理k8s存储
+用于声明pod中容器可以访问的文件目录,卷可以被挂载到pod中的一个或多个容器的指定目录下
+
+### deployment
+pod的一个抽象, 一组pod的副本数目,以及这个pod版本
+pod是组成deployment的最小单元
+### service
+Service 提供了一个或者多个 Pod 实例的稳定访问地址
+
+### Label
+
+Label 是识别 Kubernetes 对象的标签，以 key/value 的方式附加到对象上, 不具有唯一性
+
+
+

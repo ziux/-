@@ -1,4 +1,4 @@
-启动
+启动 需要管理员权限
 
 ```bash
 minikube start --vm-driver="hyperv"    --hyperv-virtual-switch="MinikubeSwitch"  --memory=2048 --image-repository registry.aliyuncs.com/google_containers
