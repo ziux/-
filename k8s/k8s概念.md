@@ -12,7 +12,14 @@ Kubernetes 主要由以下几个核心组件组成：
 
 ![img](.media/architecture.png)
 
+除了核心组件，还有一些推荐的 Add-ons：
 
+- kube-dns 负责为整个集群提供 DNS 服务
+- Ingress Controller 为服务提供外网入口
+- Heapster 提供资源监控
+- Dashboard 提供 GUI
+- Federation 提供跨可用区的集群
+- Fluentd-elasticsearch 提供集群日志采集、存储与查询
 
 ## 核心概念	
 

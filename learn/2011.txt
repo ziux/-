@@ -54,3 +54,7 @@ kubectl exec - 类似于 docker exec，在容器内执行一个命令
 npm install gitbook-cli -g
 --------gitbook安装-------
 npm install gitbook-cli -g
+--------允许ps1脚本运行-------
+set-executionpolicy remotesigned；
+---------------
+conda create -n gitbook python=3.6
