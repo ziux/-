@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div><br />
+			</div>
+			<div>pstmt = conn.createStatement();
+			</div>
+			<div><br />
+			</div>
+			<div>查询语句示例：
+			</div>
+			<div>String sql = &quot;SELECT password FROM tb_consumer WHERE account= ‘ ’ &nbsp;AND password=‘ &apos; ;&quot; ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; rs = pstmt.executeQuery(sql) ;//获得查询的结果集
+			</div>
+		</div>
+		<div><br />
+		</div>
+		<div>更新语句示例：
+		</div>
+		<div>
+			<div>String newsql = &quot;update tb_consumer set password =’&apos; WHERE account=&apos; &apos;;&quot; ;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;//update 表 set 数据项=值 where 表达式；
+			</div>
+			<div>pstmt.executeUpdate(newsql) ;//更新语句没有结果集
+			</div>
+			<div><br />
+			</div>
+			<div>添加语句示例：
+			</div>
+			<div><br />
+			</div>
+			<div>
+				<div>String newsql = &quot;insert into &nbsp;tb_consumer values(&apos;&apos;,&apos;&apos;,&apos;&apos;,&apos;&apos;);&quot; ;
+				</div>
+				<div>pstmt.executeUpdate(newsql) ;//更新语句没有结果集&nbsp;
+				</div>
+			</div>
+		</div>
+		<div><br />
+		</div>
+	</body>
+</html>

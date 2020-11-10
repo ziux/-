@@ -1,0 +1,32 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>Class.forName(&quot;sun.jdbc.odbc.JdbcOdbcDriver&quot;);
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; Connection conn = DriverManager.getConnection( &quot;jdbc:odbc:student&quot;,&quot;sa&quot;,&quot;&quot; );
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; Statement sm=conn.createStatement();
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; ResultSet rs=null;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; String str=&quot;insert into S values(&apos;s007&apos;,&apos;Tom&apos;,&apos;42&apos;,&apos;a&apos;,&apos;a&apos;)&quot;;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; String str1=&quot;select * from S&quot;;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; sm.executeUpdate(str);
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; rs=sm.executeQuery(str1);
+			</div>
+		</div>
+	</body>
+</html>

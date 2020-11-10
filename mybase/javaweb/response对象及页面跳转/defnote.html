@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>response.setHeader(&quot;refresh&quot;,&quot;2&quot;) ; &nbsp; &nbsp; &nbsp;//页面刷新（2秒）&nbsp;
+		</div>
+		<div><br />
+		</div>
+		<div>response.setHeader(&quot;refresh&quot;,&quot;3;URL=hello.htm&quot;) ;&nbsp; &nbsp; &nbsp; &nbsp; // 3秒后跳转到hello.htm页面，这种跳转时而有错
+		</div>
+		<div><br />
+		</div>
+		<div>&lt;META HTTP-EQUIV=&quot;refresh&quot; CONTENT=&quot;3;URL=hello.htm&quot;&gt; //使用HTML方式进行跳转
+		</div>
+		<div><br />
+		</div>
+		<div>&lt;jsp:forward page=&quot;hello.htm&quot;/&gt;//服务器端跳转，跳转后地址栏不变，属于无条件的跳转，执行之后立刻跳转，跳转之后的语句不会执行。可以传递request属性
+		</div>
+		<div><br />
+		</div>
+		<div>response.sendRedirect(&quot;hello.htm&quot;) ;//客户端跳转，跳转后地址栏改变，不可以传递request属性，是在所有语句执行完之后再跳转。
+		</div>
+		<div><br />
+		</div>
+		<div><br />
+		</div>
+	</body>
+</html>

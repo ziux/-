@@ -1,0 +1,274 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<p class="MsoNormal" align="center" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:center;mso-pagination:widow-orphan"><strong style="mso-bidi-font-weight:
+normal"><span lang="EN-US" style="font-size:18.0pt">Apache-tomcat-8.0.30-windows-x86</span></strong><strong style="mso-bidi-font-weight:normal"><span style="font-size:18.0pt;font-family:
+宋体;mso-ascii-font-family:Calibri;mso-ascii-theme-font:minor-latin;mso-fareast-font-family:
+宋体;mso-fareast-theme-font:minor-fareast;mso-hansi-font-family:Calibri;
+mso-hansi-theme-font:minor-latin">配置</span></strong>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><strong><span style="font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">第一步</span></strong><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">：下载</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">jdk</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">和</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">tomcat</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">： <span lang="EN-US"><br /></span></span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">&nbsp;&nbsp;&nbsp;<span style="mso-spacerun:yes">&nbsp; </span>&nbsp;</span><span style="font-size:12.0pt;
+font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">最新的</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">jdk</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">为</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">1.8.0_x</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">，</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">tomcat</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">为</span><strong style="mso-bidi-font-weight:normal"><span lang="EN-US" style="font-size:12.0pt">8.0.X</span></strong><span lang="EN-US" style="font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt"><o:p></o:p></span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><strong><span style="font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">第二步</span></strong><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">：安装和配置你的</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">jdk</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">和</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">tomcat</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">：执行</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">jdk</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">和</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">tomcat</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">的安装程序，然后设置按照路径进行安装即可。</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt"><br />1.</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">安装</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">jdk</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">以后，需要配置一下环境变量，在我的电脑</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">-&gt;</span><span style="font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">属性</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">-&gt;</span><span style="font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">高级</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">-&gt;</span><span style="font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">环境变量</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">-&gt;</span><span style="font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">系统变量中添加以下环境变量</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">(</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">假定你的</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">jdk</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">安装在</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;color:#FF0102;mso-font-kerning:0pt">C:\Program
+Files\Java</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">）：</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">&nbsp;<br /><span style="color:red">JAVA_HOME</span>=C:\Program Files\Java\jdk1.8.0_121<span style="color:#660199"> </span><br /><span style="color:red">classpath</span>=.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">（</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">.;</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">一定不能少，因为它代表当前路径</span><span lang="EN-US" style="font-size:12.0pt;font-family:
+'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:0pt">)&nbsp;<br /><span style="color:red">path</span>=%JAVA_HOME%\bin&nbsp;</span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">2.</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">安装</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">Tomcat</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">后，在我的电脑</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">-&gt;</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">属性</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">-&gt;</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">高级</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">-&gt;</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">环境变量</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">-&gt;</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">系统变量中添加以下环境变量</span><span lang="EN-US" style="font-size:
+12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;
+mso-font-kerning:0pt">(</span><span style="font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;mso-font-kerning:0pt">假定你的</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">tomcat</span><span style="font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">安装在</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">c:\</span><span lang="EN-US" style="font-size:12.0pt"> </span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">Apache-tomcat-8.0.30-windows-x86</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">）：</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">&nbsp;</span>
+		</p>
+		<p class="MsoNormal" align="left" style="text-align:left;mso-pagination:widow-orphan"><span lang="EN-US"><span style="font-family: 'Times New Roman', serif; font-size: 12pt; color: rgb(255, 1, 2); ">CATALINA_HOME</span></span><span style="font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">：</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">c:\</span><span lang="EN-US" style="font-size:12.0pt"> </span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">Apache-tomcat-8.0.30-windows-x86<br /><span style="color:#FF0102">CATALINA_BASE</span></span><span style="font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">：</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">c:\</span><span lang="EN-US" style="font-size:12.0pt"> </span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">Apache-tomcat-8.0.30-windows-x86<br />TOMCAT_HOME:&nbsp;C:\</span><span lang="EN-US" style="font-size:12.0pt"> </span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">Apache-tomcat-8.0.30-windows-x86<br /></span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+mso-font-kerning:0pt">然后修改环境变量中的</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">classpath</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">，把</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">tomat</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">安装目录下的</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">lib</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">下的</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">servlet.jar</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">追加到</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">classpath</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">中去，修改后的</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">classpath</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">如下：</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">&nbsp;<br />classpath=.;%JAVA_HOME%\lib\dt.jar;%JAVA_HOME%\lib\tools.jar;%CATALINA_HOME%\lib\servlet-api.jar;<br /></span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+mso-font-kerning:0pt">接着可以启动</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">tomcat</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">，在</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">IE</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">中访问</span><span lang="EN-US"><a href="http://localhost:8080/"><span style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">http://localhost:8080</span></a></span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">，如果看到</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">tomcat</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">的欢迎页面的话说明安装成功了。</span><span lang="EN-US" style="font-size:12.0pt;font-family:
+'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:0pt">&nbsp;<br style="mso-special-character:line-break" /><br style="mso-special-character:line-break" /></span><strong><span lang="EN-US" style="font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;mso-font-kerning:0pt"><o:p></o:p></span></strong>
+		</p>
+		<p class="MsoNormal" align="left" style="text-align:left;mso-pagination:widow-orphan"><strong><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">第三步</span></strong><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">：建立自己的</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">jsp&nbsp;app</span><span style="font-size:12.0pt;font-family:宋体;
+mso-bidi-font-family:宋体;mso-font-kerning:0pt">目录</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">&nbsp;<br />1.</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">到</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">Tomcat</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">的安装目录的</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">webapps</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">目录，可以看到</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">ROOT</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">，</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">examples,&nbsp;tomcat-docs</span><span style="font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">之类</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">Tomcat</span><span style="font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">自带的的目录；</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">&nbsp;<br />2.</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">在</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">webapps</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">目录下新建一个目录，起名叫</span><span lang="EN-US" style="font-size:
+12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;
+mso-font-kerning:0pt">myapp</span><span style="font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">；</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">&nbsp;<br />3.myapp</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">下新建一个目录</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">WEB-INF</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">，注意，目录名称是区分大小写的；</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">&nbsp;<br />4.WEB-INF</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">下新建一个文件</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt">web.xml</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">，内容如下：</span><span style="font-size:12.0pt;font-family:
+'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:0pt"> </span><span lang="EN-US" style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+mso-font-kerning:0pt"><o:p></o:p></span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">&lt;?xml version=&quot;1.0&quot;
+encoding=&quot;ISO-8859-1&quot;?&gt; <br />&lt;!DOCTYPE web-app <br />PUBLIC &quot;-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN&quot; <br />&quot;http://java.sun.com/dtd/web-app_2_3.dtd&quot;&gt; <br /><br />&lt;web-app&gt; <br />&lt;display-name&gt;My Web Application&lt;/display-name&gt; <br />&lt;description&gt; <br />A application for test. <br />&lt;/description&gt; <br />&lt;/web-app&gt;</span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><strong><span style="font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">第四步</span></strong><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">：建立自己的<span lang="EN-US">Servlet</span>：<span lang="EN-US"><br /></span>写入你的第一个<span lang="EN-US">Servlet:<br /></span>在你新建的<span lang="EN-US">Application <span style="color:red">myapp/WEB-INF/classes</span>/test</span>目录下新建<span lang="EN-US">HelloWorld.java</span></span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt"><span lang="EN-US">Servlet</span>必须使用</span><span lang="EN-US" style="font-size:12.0pt;font-family:
+'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:0pt">c:\</span><span lang="EN-US" style="font-size:12.0pt"> </span><span lang="EN-US" style="font-size:
+12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;
+mso-font-kerning:0pt">Apache-tomcat-8.0.30-windows-x86</span><span lang="EN-US" style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">\webapps\myapp\WEB-INF</span><span style="font-size:12.0pt;font-family:
+宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">这个目录下面的<span lang="EN-US">web.xml</span>文件进行注册，<span lang="EN-US"><br /></span>用记事本打开这个<span lang="EN-US">web.xml</span>文件，<span lang="EN-US"><br /></span>在<span lang="EN-US">&lt;web-app&gt;&lt;/web-app&gt;</span>添加下面这段程序<span lang="EN-US">:<o:p></o:p></span></span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">&lt;servlet&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;servlet-name&gt;HelloWorld&lt;/servlet-name&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;servlet-class&gt;test.HelloWorld&lt;/servlet-class&gt;<br />&nbsp;&lt;/servlet&gt;<br />&nbsp;&lt;servlet-mapping&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;servlet-name&gt;HelloWorld&lt;/servlet-name&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&lt;url-pattern&gt;/HelloWorld&lt;/url-pattern&gt;<br />&nbsp;&nbsp;&nbsp;&lt;/servlet-mapping&gt;<o:p></o:p></span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><span lang="EN-US" style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">&nbsp;</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">为什么呢<span lang="EN-US">???<br />&nbsp;<o:p></o:p></span></span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><span style="font-size:12.0pt;
+font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">因为这样的结构<span lang="EN-US"><br />&nbsp;&nbsp; </span></span><span lang="EN-US" style="font-size:12.0pt;font-family:
+'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:0pt">&lt;servlet&gt;<br />&nbsp;&nbsp; &lt;servlet-name&gt;HelloWorld&lt;/servlet-name&gt;<br />&nbsp;&nbsp; &lt;servlet-class&gt;test.HelloWorld&lt;/servlet-class&gt;//</span><span style="font-size:12.0pt;font-family:宋体;mso-ascii-font-family:'Times New Roman';
+mso-bidi-font-family:'Times New Roman';mso-font-kerning:0pt">类的路径</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt"><br />&nbsp;&nbsp; &lt;/servlet&gt;</span><span lang="EN-US" style="font-size:12.0pt;
+font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt"><br /></span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;
+mso-font-kerning:0pt">表示指定包含的<span lang="EN-US">servlet</span>类<span lang="EN-US">.<br /></span>而以下的结构<span lang="EN-US"><br />&nbsp;</span></span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt">&lt;servlet-mapping&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;servlet-name&gt;HelloWorld&lt;/servlet-name&gt;<br />&nbsp;&nbsp;&nbsp; &lt;url-pattern&gt;/HelloWorld&lt;/url-pattern&gt;<br />&nbsp;&nbsp; &lt;/servlet-mapping&gt;</span><span lang="EN-US" style="font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt"><br />&nbsp;</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">表示指定<span lang="EN-US">HelloServlet</span>应当映射到哪一种<span lang="EN-US">URL</span>模式。</span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><strong><span style="font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">第五步</span></strong><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">：建立自己<span lang="EN-US">java Bean<o:p></o:p></span></span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><span lang="EN-US" style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">1. </span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">在你新建的<span lang="EN-US">Application <span style="color:red">myapp/WEB-INF/classes/test</span></span>目录下新建<span lang="EN-US">TestBean.java</span></span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><span lang="EN-US" style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">2.</span><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:
+宋体;mso-font-kerning:0pt">然后在你新建的应用程序目录<span lang="EN-US" style="color:red">myapp</span><span style="color:black">下新建一个新的<span lang="EN-US">jsp</span>文件：<span lang="EN-US">testBean.jsp</span></span></span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><strong><span style="font-size:
+12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:0pt">第六步：</span></strong><span style="font-size:12.0pt;font-family:宋体;mso-bidi-font-family:宋体;mso-font-kerning:
+0pt">配置虚拟目录<span lang="EN-US"><o:p></o:p></span></span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><span style="font-size:12.0pt;
+font-family:宋体;mso-ascii-font-family:'Times New Roman';mso-bidi-font-family:
+'Times New Roman';mso-font-kerning:0pt">打开</span><span style="font-size:12.0pt;
+font-family:'Times New Roman','serif';mso-fareast-font-family:宋体;mso-font-kerning:
+0pt"> <span lang="EN-US">TOMCAT_HOME\conf\server.xml </span></span><span style="font-size:12.0pt;font-family:宋体;mso-ascii-font-family:'Times New Roman';
+mso-bidi-font-family:'Times New Roman';mso-font-kerning:0pt">文件，在</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt"> &lt;Host&gt; </span><span style="font-size:12.0pt;font-family:宋体;mso-ascii-font-family:'Times New Roman';
+mso-bidi-font-family:'Times New Roman';mso-font-kerning:0pt">和</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt"> &lt;/Host&gt; </span><span style="font-size:12.0pt;font-family:宋体;mso-ascii-font-family:'Times New Roman';
+mso-bidi-font-family:'Times New Roman';mso-font-kerning:0pt">之间加入</span><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';
+mso-fareast-font-family:宋体;mso-font-kerning:0pt"><o:p></o:p></span>
+		</p>
+		<p class="MsoNormal" align="left" style="mso-margin-top-alt:auto;mso-margin-bottom-alt:
+auto;text-align:left;mso-pagination:widow-orphan"><span lang="EN-US" style="font-size:12.0pt;font-family:'Times New Roman','serif';mso-fareast-font-family:
+宋体;mso-font-kerning:0pt">&lt;Context path=&quot;/myapp&quot;
+docBase=&quot;D:\myapp&quot; debug=&quot;0&quot; reloadable=&quot;true&quot; <span style="mso-spacerun:yes">&nbsp;</span>/&gt;</span>
+		</p>
+	</body>
+</html>

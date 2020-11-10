@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>/*
+		</div>
+		<div>由于fileupload存在着许多的问题，如无法像使用request.getParameter()那样准确的得到提交的参数。而且所有的上传文件都要进行依次判断，才能够保存，不能一次性全部保存，所以可以写一个tool工具对代码进行扩充。
+		</div>
+		<div>*/
+		</div>
+		<div>
+			<div>import org.apache.commons.fileupload.FileUploadException；
+			</div>
+			<div>import org.apache.commons.fileupload.disk.DiskFileItemFactory；
+			</div>
+			<div>import org.apache.commons.fileupload.servlet.ServletFileUpload；
+			</div>
+			<div>
+				<div>public class FileUploadTools{
+				</div>
+				<div>private HttpServletRequest request=null；//取得HttpServletRequest 对象
+				</div>
+				<div>private List&lt;Fileltem&gt; items=null；/保存全部的上传内容
+				</div>
+				<div>private Map&lt;String,List&lt;String&gt;&gt; params =new HashMap&lt;String,List&lt;String&gt;&gt;()；//保存所有的参数
+				</div>
+				<div>private Map&lt;String,Fileltem&gt; files=new HashMap&lt;String,Fileltem&gt;()；
+				</div>
+				<div>private int maxsize=3145728；//默认的上传文件大小为3MB,3*1024*1024
+				</div>
+				<div>public FileUploadTools(HttpServletRequest request,int maxSize,String tempDir)throws Exception{ &nbsp; &nbsp; //传递request对象、最大上传限制、临时保存目录
+				</div>
+				<div>this.request=request；//接收request对象
+				</div>
+				<div>DiskFileItemFactory factory=new DiskFileItemFactory（）；//创建磁盘工厂
+				</div>
+				<div>if(tempDir l=nul){//判断是否需要进行临时上传目录
+				</div>
+				<div>factory.setRepository(new File(tempDir））；//设置临时文件保存目录
+				</div>
+				<div>ServletFileUpload upload =new ServletFileUpload(factory）；//创建处理工具
+				</div>
+				<div><br />
+				</div>
+				<div><br />
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

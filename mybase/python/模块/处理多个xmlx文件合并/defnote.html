@@ -1,0 +1,168 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>#coding:utf-8
+			</div>
+			<div>import openpyxl
+			</div>
+			<div>import os,re
+			</div>
+			<div>from pip._vendor.distlib.compat import raw_input
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div>#返回选定行的数据。file：文件路径，listrow：所需数据行列表
+			</div>
+			<div>def readexcel(file,listrow):
+			</div>
+			<div><br />
+			</div>
+			<div>&nbsp; &nbsp; allrow=[]
+			</div>
+			<div><br />
+			</div>
+			<div>&nbsp; &nbsp; wb=openpyxl.load_workbook(file)
+			</div>
+			<div>&nbsp; &nbsp; sheet=wb.active
+			</div>
+			<div>&nbsp; &nbsp; for r in listrow:
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; l=[]
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; for i in list(sheet.rows)[r-1]:
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; l.append(i.value)
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; allrow.append(l)
+			</div>
+			<div>&nbsp; &nbsp; print(&quot;正在操作文件：&quot;+file)&nbsp; &nbsp; 
+			</div>
+			<div>&nbsp; &nbsp; return allrow
+			</div>
+			<div><br />
+			</div>
+			<div>#将数据写入excel listr数据列表，二维
+			</div>
+			<div>def wirteexcel(listr):
+			</div>
+			<div>&nbsp; &nbsp; wb=openpyxl.Workbook()
+			</div>
+			<div>&nbsp; &nbsp; sheet=wb.active
+			</div>
+			<div>&nbsp; &nbsp; for r in listr:
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; sheet.append(r)
+			</div>
+			<div>&nbsp; &nbsp; wb.save(&apos;text.xlsx&apos;)
+			</div>
+			<div>&nbsp; &nbsp; print(&apos;写入成功！&apos;)
+			</div>
+			<div><br />
+			</div>
+			<div>#返回当前路径的所有excel文件
+			</div>
+			<div>def getdir():
+			</div>
+			<div>&nbsp; &nbsp; ls = os.listdir()
+			</div>
+			<div>&nbsp; &nbsp; listd=[]
+			</div>
+			<div>&nbsp; &nbsp; for i in ls:
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; if re.search(&apos;\.xlsx&apos;, i):
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; if re.search(&apos;text\.xlsx&apos;, i):
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pass
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; else:
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; listd.append(i)
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; print(&apos;获取文件:&apos;+i)
+			</div>
+			<div>&nbsp; &nbsp; return listd
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div>def text():
+			</div>
+			<div>&nbsp; &nbsp; t=raw_input(&quot;输入要合成的每一个xlsx文件的哪几行。\n 如 2-5：表示第二到第五行，3：表示第三行，默认为第一行&quot;)
+			</div>
+			<div>&nbsp; &nbsp; raw=re.search(&apos;(\d+)-?(\d*)&apos;, t)
+			</div>
+			<div>&nbsp; &nbsp; list=[]
+			</div>
+			<div>&nbsp; &nbsp; if(re.search(&apos;(\d+)-?(\d*)&apos;, t)):
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; r1=raw.group(1)
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; r2=raw.group(2)
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; r1=int(r1)
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; r2=int(r2)
+			</div>
+			<div><br />
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; for i in range(r1,r2+1):
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; list.append(i)
+			</div>
+			<div>&nbsp; &nbsp; else:
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; list.append(1)
+			</div>
+			<div><br />
+			</div>
+			<div>&nbsp; &nbsp; l=[]
+			</div>
+			<div>&nbsp; &nbsp; for file in getdir():
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; for e in readexcel(file, list):
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; l.append(e)
+			</div>
+			<div>&nbsp; &nbsp; wirteexcel(l)
+			</div>
+			<div>&nbsp; &nbsp; t=raw_input(&quot;任意键退出&quot;)
+			</div>
+			<div><br />
+			</div>
+			<div>def __init__():
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; text() 
+			</div>
+			<div>__init__()&nbsp; &nbsp;&nbsp; 
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+			<div><br />
+			</div>
+		</div>
+	</body>
+</html>

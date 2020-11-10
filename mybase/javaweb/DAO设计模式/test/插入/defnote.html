@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>package cn.mldn.lxh.dao.test ;
+			</div>
+			<div>import cn.mldn.lxh.factory.DAOFactory ;
+			</div>
+			<div>import cn.mldn.lxh.vo.* ;
+			</div>
+			<div>public class TestDAOInsert{
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public static void main(String args[]) throws Exception{
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Emp emp = null ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; for(int x=0;x&lt;5;x++){
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; emp = new Emp() ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; emp.setEmpno(1000 + x) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; emp.setEname(&quot;李兴华 - &quot; + x) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; emp.setJob(&quot;程序员 - &quot; + x) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; emp.setHiredate(new java.util.Date()) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; emp.setSal(500 * x) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; DAOFactory.getIEmpDAOInstance().doCreate(emp) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; }
+			</div>
+			<div>}
+			</div>
+		</div>
+	</body>
+</html>

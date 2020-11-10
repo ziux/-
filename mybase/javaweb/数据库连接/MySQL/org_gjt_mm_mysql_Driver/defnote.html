@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<style>
+			body, table{font-family: 微软雅黑; font-size: 10pt}
+			table{border-collapse: collapse; border: 1px solid gray; border-width: 2px 1px 2px 1px;}
+			th{border: 1px solid gray; padding: 4px; background-color: #ddd;}
+			td{border: 1px solid gray; padding: 4px;}
+			tr:nth-child(2n){background-color: #f8f8f8;}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div>&nbsp; &nbsp;// 定义若干个数据库的连接常量
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public static final String DBDRIVER = &quot;org.gjt.mm.mysql.Driver&quot; ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public static final String DBURL = &quot;jdbc:mysql://localhost:3306/mldn&quot; ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public static final String DBUSER = &quot;root&quot; ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; public static final String DBPASS = &quot;mysqladmin&quot; ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; Connection conn = null ;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // 数据库连接
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; PreparedStatement pstmt = null ;&nbsp; &nbsp; &nbsp; &nbsp; // 数据库预处理操作
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; ResultSet rs = null ;&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // 查询要处理结果集
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; Class.forName(DBDRIVER) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; conn = DriverManager.getConnection(DBURL,DBUSER,DBPASS) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; String sql = &quot;SELECT name FROM user WHERE userid=? AND password=?&quot; ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; pstmt = conn.prepareStatement(sql) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; pstmt.setString(1,request.getParameter(&quot;id&quot;)) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; pstmt.setString(2,request.getParameter(&quot;password&quot;)) ;
+			</div>
+			<div>&nbsp; &nbsp; &nbsp; &nbsp; rs = pstmt.executeQuery() ;&nbsp; &nbsp; &nbsp; &nbsp; // 查询
+			</div>
+		</div>
+	</body>
+</html>
