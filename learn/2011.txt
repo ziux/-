@@ -58,3 +58,9 @@ npm install gitbook-cli -g
 set-executionpolicy remotesigned；
 ---------------
 conda create -n gitbook python=3.6
+--------docker push-------
+ docker tag dj_demo1 k8s-master:5000/dj_demo1
+[root@k8s-master django_demo]# docker push k8s-master:5000/dj_demo1
+
+--------docker commit-------
+ docker commit -m="has update" -a="yy" 386c4807639e dj_demo1:1.1
