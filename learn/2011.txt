@@ -64,3 +64,9 @@ conda create -n gitbook python=3.6
 
 --------docker commit-------
  docker commit -m="has update" -a="yy" 386c4807639e dj_demo1:1.1
+--------k8s查看服务状态-------
+kubectl patch svc -n istio-system grafana -p '{"spec": {"type": "NodePort"}}'
+--------k8s分配主机端口-------
+kubectl patch svc -n istio-system grafana -p '{"spec": {"type": "NodePort"}}'
+--------k8s查看服务状态-------
+ kubectl describe svc -n istio-system grafana
